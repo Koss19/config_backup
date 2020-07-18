@@ -20,6 +20,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Initialize plugin system
 call plug#end()
 
+set encoding=utf-8
 set number	    "display number of line
 set noexpandtab	"set tab as symbols of space
 set tabstop=4	"set tab size = 4 space

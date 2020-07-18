@@ -7,7 +7,7 @@
 colors() {
 	local fgc bgc vals seq0
 
-	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
+# 	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
 	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
 	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
 	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
@@ -32,6 +32,7 @@ colors() {
 }
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+[ -r /etc/profile.d/bash_colors.sh ] && . /etc/profile.d/bash_colors.sh
 
 # Change the window title of X terminals
 case ${TERM} in
@@ -42,6 +43,7 @@ case ${TERM} in
 		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
 		;;
 esac
+
 
 use_color=true
 
@@ -70,9 +72,11 @@ if ${use_color} ; then
 	fi
 
 	if [[ ${EUID} == 0 ]] ; then
-		PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
+		MainColor=$BRed
+		PS1="\[${MainColor}\][\h\[${BWhite}\] \w\[${MainColor}\]]\[${Reset}\]"
 	else
-		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+		MainColor=$BGreen
+		PS1="\[${MainColor}\][\[${BBlue}\]\u\[${BWhite}\]@\[${MainColor}\]\h\[${BWhite}\] \w\[${MainColor}\]]\[${Reset}\]"
 	fi
 
 	alias ls='ls --color=auto'
@@ -87,6 +91,24 @@ else
 		PS1='\u@\h \w \$ '
 	fi
 fi
+
+# Error part
+PS1=$PS1'$(if [[ $? -ne 0 ]] ;then echo -e "\[\033[s\]\[\033[$((COLUMNS-4))G\]\[${Red}\]\[:(\]\[\033[0G!\]\[\033[u\]\[${Reset}\]";fi)'
+
+# git part
+PS1=$PS1'$(if [[ -d .git ]] ;then echo -ne "\[${BIPurple}\][$(git branch)]\[${Reset}\]";fi) '
+
+# decoration part
+PS1=" \[${MainColor}\]${LINE_CORNER_UP}${LINE_HORIZONTAL}"$PS1"\n \[${MainColor}\]${LINE_CORNER_DOWN}${LINE_HORIZONTAL}"'\$ '"\[${Reset}\]"
+
+
+#\033[#С передвинуть курсор вправо на # столбцов
+
+#PS1=$PS1"\[\033[s\]\[\033[1;$((COLUMNS-15))f\]\$(pwd)\[\033[u\]"
+
+#PROMPT_COMMAND=$PROMPT_COMMAND"PS1=$PS1"
+
+[ -n $DISPLAY ] && /usr/bin/xset r rate 200
 
 unset use_color safe_term match_lhs sh
 
@@ -139,16 +161,16 @@ ex ()
 }
 
 # better yaourt colors
-export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 
-PATH=$PATH:~/.local/bin
-export PATH
-EDITOR=/usr/bin/vim
-export EDITOR
+export EDITOR=/usr/bin/vim
+export TERMINAL=xfce4-terminal
 
-if [ -f ~/.bash_aliases ]
-then
-	. ~/.bash_aliases
-fi
+[ -r ~/.bash_aliases ] && . ~/.bash_aliases
 
-screenfetch
+#an alternative previous command
+#if [ -f ~/.bash_aliases ]
+#then
+#	. ~/.bash_aliases
+#fi
+
+neofetch

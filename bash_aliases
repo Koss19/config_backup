@@ -4,7 +4,7 @@ export HISTFILESIZE=1000 #количество сохраняемых коман
 export HISTTIMEFORMAT='%F %T ' #дата и время истории (работает)
 #сохранение истории команд по мере ввода, заместо обычного сэйва после закрытия терминала
 shopt -s histappend
-export PROMPT_COMMAND='history -a'
+export PROMPT_COMMAND='history -a;'$PROMPT_COMMAND
 shopt -s cmdhist
 
 #переменные
@@ -30,5 +30,7 @@ alias wlog='w koss' #показывает где ты залогинен
 
 alias clr='clear'
 alias term='xfce4-terminal'
-
+alias update-system='yaourt -Syua'
+alias please='sudo'
+alias free='free -h'
 

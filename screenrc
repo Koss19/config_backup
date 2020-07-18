@@ -111,7 +111,7 @@ defmonitor on
 
 shelltitle "$ |bash"
 
-caption always "%{+b Bk} $USER%{wk}@%{gk}%H %=%{-b Rk} Load: %{+b}%l "
+caption always "%{+b bk} $USER%{wk}@%{gk}%H %=%{Rk} Load: %{+b}%l "
 hardstatus on
 hardstatus alwayslastline
 hardstatus string "%{c.} %?%{.w}%-Lw%?%{+b .G}[%{.r}%n%f%{.W} %t%?{%u}%?%{.G}]%{-b .W}%?%+Lw%? %=%{.G}|%H %{.Y} %d-%m-%Y %{+b .G}%0c" #:%s "

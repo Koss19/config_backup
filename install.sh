@@ -30,6 +30,11 @@ fi
 cd ..
 #sudo rm -dR yay/
 
+#install packages
+PACKAGES="bash-completion neofetch alacritty kitty conky polybar ranger screen scrot vim"
+
+sudo pacman -S $PACKAGES
+
 #touchpad config file
 sudo ln -sf $SCRIPT_PWD_DIR\90-touchpad.conf /etc/X11/xorg.conf.d/90-touchpad.conf
 
@@ -249,4 +254,22 @@ if [[ $? -ne 0 ]]
 	else echo -e "${BIGreen}.config/ranger/rc.conf create simlink${Reset}" 
 fi
 
+#conky config file
+ln -sf $SCRIPT_PWD_DIR\conky $HOME/.conky
+if [[ $? -ne 0 ]]
+	then echo -e "${BIRed}.conky error create simlink${Reset}" 
+	else echo -e "${BIGreen}.conky create simlink${Reset}" 
+fi
 
+#startup files
+ln -sf $SCRIPT_PWD_DIR\conky/startup.sh $HOME/.local/bin/startup-conky
+if [[ $? -ne 0 ]]
+	then echo -e "${BIRed}.local/bin/startup-conky error create simlink${Reset}" 
+	else echo -e "${BIGreen}.local/bin/startup-conky create simlink${Reset}" 
+fi
+
+ln -sf $SCRIPT_PWD_DIR\config/polybar/launch.sh $HOME/.local/bin/statusbar
+if [[ $? -ne 0 ]]
+	then echo -e "${BIRed}.config/polybar/launch.sh error create simlink${Reset}" 
+	else echo -e "${BIGreen}.config/polybar/launch.sh create simlink${Reset}" 
+fi

@@ -142,16 +142,6 @@ if [[ -d $HOME/.config ]]; then
 		fi
 	fi
 
-	if [[ -d $HOME/.config/ranger ]]; then
-		echo -e "${BIBlue}.config/ranger is exist${Reset}"
-	else
-		mkdir $HOME/.config/ranger
-		if [[ $? -ne 0 ]]
-			then echo -e "${BIRed}Error .config/ranger was not created${Reset}" 
-			else echo -e "${BIGreen}.config/ranger successfully created${Reset}" 
-		fi
-	fi
-
 else
 	mkdir $HOME/.config
 	if [[ $? -ne 0 ]]
@@ -189,12 +179,6 @@ else
 		else echo -e "${BIGreen}.config/polybar successfully created${Reset}" 
 	fi
 
-	mkdir $HOME/.config/ranger
-	if [[ $? -ne 0 ]]
-		then echo -e "${BIRed}Error .config/ranger was not created${Reset}" 
-		else echo -e "${BIGreen}.config/ranger successfully created${Reset}" 
-	fi
-
 fi
 
 ln -sf $SCRIPT_PWD_DIR\config/i3/config $HOME/.config/i3/config
@@ -203,7 +187,7 @@ if [[ $? -ne 0 ]]
 	else echo -e "${BIGreen}.config/i3/config create simlink${Reset}" 
 fi
 
-#i3 lock scripts
+#i3 lock script
 ln -sf $SCRIPT_PWD_DIR\config/i3_locker/lock.sh $HOME/.config/i3_locker/lock.sh
 if [[ $? -ne 0 ]]
 	then echo -e "${BIRed}.config/i3_locker/lock.sh error create simlink${Reset}" 
@@ -225,28 +209,8 @@ fi
 #neofetch config file
 ln -sf $SCRIPT_PWD_DIR\config/neofetch/config.conf $HOME/.config/neofetch/config.conf
 if [[ $? -ne 0 ]]
-	then echo -e "${BIRed}.config/neofetch/config.conf error create simlink${Reset}" 
-	else echo -e "${BIGreen}.config/neofetch/config.conf create simlink${Reset}" 
-fi
-
-#polybar config files
-
-ln -sf $SCRIPT_PWD_DIR\config/polybar/config $HOME/.config/polybar/config
-if [[ $? -ne 0 ]]
-	then echo -e "${BIRed}.config/polybar/config error create simlink${Reset}" 
-	else echo -e "${BIGreen}.config/polybar/config create simlink${Reset}" 
-fi
-ln -sf $SCRIPT_PWD_DIR\config/polybar/launch.sh $HOME/.config/polybar/launch.sh
-if [[ $? -ne 0 ]]
-	then echo -e "${BIRed}.config/polybar/launch.sh error create simlink${Reset}" 
-	else echo -e "${BIGreen}.config/polybar/launch.sh create simlink${Reset}" 
-fi
-
-#ranger config file
-ln -sf $SCRIPT_PWD_DIR\config/ranger/rc.conf $HOME/.config/ranger/rc.conf
-if [[ $? -ne 0 ]]
-	then echo -e "${BIRed}.config/ranger/rc.conf error create simlink${Reset}" 
-	else echo -e "${BIGreen}.config/ranger/rc.conf create simlink${Reset}" 
+	then echo -e "${BIRed}.config/kitty/neofetch/config.conf error create simlink${Reset}" 
+	else echo -e "${BIGreen}.config/kitty/neofetch/config.conf create simlink${Reset}" 
 fi
 
 

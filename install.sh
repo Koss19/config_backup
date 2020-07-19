@@ -31,9 +31,11 @@ cd ..
 #sudo rm -dR yay/
 
 #install packages
-PACKAGES="bash-completion neofetch alacritty kitty conky polybar ranger screen scrot vim i3-gaps i3lock-color i3exit arandr xautolock rofi numlockx xorg-setxkbmap compton nitrogen i3-scrot"
+PACKAGES="bash-completion neofetch alacritty kitty conky polybar ranger screen scrot vim i3-gaps i3lock-color i3exit arandr xautolock rofi numlockx xorg-setxkbmap compton nitrogen i3-scrot ttf-font-awesomei lxappearance"
 
 sudo pacman -S $PACKAGES
+
+yay -S ttf-google-fonts-git
 
 #touchpad config file
 sudo ln -sf $SCRIPT_PWD_DIR\90-touchpad.conf /etc/X11/xorg.conf.d/90-touchpad.conf

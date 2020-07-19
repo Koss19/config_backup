@@ -31,7 +31,7 @@ cd ..
 #sudo rm -dR yay/
 
 #install packages
-PACKAGES="bash-completion neofetch alacritty kitty conky polybar ranger screen scrot vim i3-gaps i3lock-color i3exit arandr xautolock rofi numlockx xorg-setxkbmap compton nitrogen i3-scrot ttf-font-awesomei lxappearance"
+PACKAGES="bash-completion neofetch alacritty kitty conky polybar ranger screen scrot vim i3-gaps i3lock-color i3exit arandr xautolock rofi dmenu numlockx xorg-setxkbmap compton nitrogen i3-scrot ttf-font-awesome lxappearance"
 
 sudo pacman -S $PACKAGES
 

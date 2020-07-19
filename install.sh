@@ -31,7 +31,7 @@ cd ..
 #sudo rm -dR yay/
 
 #install packages
-PACKAGES="bash-completion neofetch alacritty kitty conky polybar ranger screen scrot vim"
+PACKAGES="bash-completion neofetch alacritty kitty conky polybar ranger screen scrot vim i3-gaps i3lock-color"
 
 sudo pacman -S $PACKAGES
 

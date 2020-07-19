@@ -31,7 +31,7 @@ cd ..
 #sudo rm -dR yay/
 
 #install packages
-PACKAGES="bash-completion neofetch alacritty kitty conky polybar ranger screen scrot vim i3-gaps i3lock-color"
+PACKAGES="bash-completion neofetch alacritty kitty conky polybar ranger screen scrot vim i3-gaps i3lock-color i3exit"
 
 sudo pacman -S $PACKAGES
 
@@ -157,6 +157,16 @@ if [[ -d $HOME/.config ]]; then
 		fi
 	fi
 
+	if [[ -d $HOME/.local/bin ]]; then
+		echo -e "${BIBlue}.local/bin is exist${Reset}"
+	else
+		mkdir $HOME/.local/bin
+		if [[ $? -ne 0 ]]
+			then echo -e "${BIRed}Error .local/bin was not created${Reset}" 
+			else echo -e "${BIGreen}.local/bin successfully created${Reset}" 
+		fi
+	fi
+
 else
 	mkdir $HOME/.config
 	if [[ $? -ne 0 ]]
@@ -200,6 +210,11 @@ else
 		else echo -e "${BIGreen}.config/ranger successfully created${Reset}" 
 	fi
 
+	mkdir $HOME/.local/bin
+	if [[ $? -ne 0 ]]
+		then echo -e "${BIRed}Error .local/bin was not created${Reset}" 
+		else echo -e "${BIGreen}.local/bin successfully created${Reset}" 
+	fi
 fi
 
 ln -sf $SCRIPT_PWD_DIR\config/i3/config $HOME/.config/i3/config
